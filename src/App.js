@@ -1,20 +1,14 @@
-import './App.css';
+
 import React from "react";
-import { TodoCounter } from "./TodoCounter";
-import { TodoSearch } from "./TodoSearch.js";
-import { TodoList } from "./TodoList.js";
-import { TodoItem } from "./TodoItem.js";
-import { CreateTodoButton } from "./CreateTodoButton.js";
+import { AppUI } from './AppUI';
 
-import { TodoHeader } from "./TodoHeader.js";
-
-const  defaultTodos  = [
-  { text: "Sembrar zanahoria", priority: "high", completed: false},
-  { text: "Comer mangos", priority: "medium", completed: false},
-  { text: "Devorar más manzanas", priority: "low", completed: false},
-  { text: "Cortar cebolla", priority: "high", completed: false},
-  { text: "Comer manzanas", priority: "medium", completed: true},
-]
+// const  defaultTodos  = [
+//   { text: "Sembrar zanahoria", priority: "high", completed: false},
+//   { text: "Comer mangos", priority: "medium", completed: false},
+//   { text: "Devorar más manzanas", priority: "low", completed: false},
+//   { text: "Cortar cebolla", priority: "high", completed: false},
+//   { text: "Comer manzanas", priority: "medium", completed: true},
+// ];
 
 const priorityValues = ["high", "medium", "low"];
 
@@ -44,8 +38,34 @@ const sortTodos = (todoList) => {
   return listSorted;
 };
 
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
+  
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = [];
+  } else {
+    parsedItem = JSON.parse(localStorageItem);
+  }
+  
+  const [ item, setItem ] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    const strigifiedItem = JSON.stringify(newItem);
+    localStorage.setItem(itemName, strigifiedItem);
+
+    setItem(newItem);
+  };
+
+  return [ 
+    item,
+    saveItem
+  ];
+}
+
 function App() {
-  const [ todos, setTodos ] = React.useState(defaultTodos);
+  const [ todos, saveTodos ] = useLocalStorage("TODOS_V1", []);
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((todo) => (!!todo.completed)).length;
@@ -66,50 +86,33 @@ function App() {
 
   searchedTodos = sortTodos(searchedTodos);
 
+
+
   const completeTodos = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text);
 
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const deleteTodos = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   return (
-    <React.Fragment>
-      <TodoHeader />
-      <div className="main__container">
-        <TodoCounter 
-          total={totalTodos}
-          completed={completedTodos}
-        />
-    
-        <TodoSearch 
-          searchValue={searchValue} 
-          setSearchValue={setSearchValue} 
-        />
-    
-        <TodoList>
-          { searchedTodos.map((todo) => (
-            <TodoItem 
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              priority={todo.priority}
-              onComplete={() => completeTodos(todo.text)}
-              onDelete={() => deleteTodos(todo.text)}
-            />
-          ))}
-        </TodoList>
-        <CreateTodoButton />
-      </div>
-    </React.Fragment>
+    <AppUI 
+      total={totalTodos}
+      completed={completedTodos}
+      searchValue={searchValue} 
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodos={completeTodos}
+      deleteTodos={deleteTodos}
+    />
   );
 }
 
