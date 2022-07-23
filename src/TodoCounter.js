@@ -2,7 +2,10 @@ import React from "react";
 
 function TodoCounter() {
     return  (
-        <h2>Has completado 2 de 3 TODOs</h2>
+        <React.Fragment>
+            <h2 className="main__count">3 tasks</h2>
+            <h2 className="main__count">0 completed</h2>
+        </React.Fragment>
     )
 }
 

@@ -1,9 +1,8 @@
-import { PROPERTY_TYPES } from "@babel/types";
 import React from "react";
 
 function TodoList(props) {
     return (
-        <ul>
+        <ul className="main__list">
             {props.children}
         </ul>
     );

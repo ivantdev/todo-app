@@ -1,38 +1,210 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+    font-size: 62.5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+    list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a {
+    text-decoration: none;
+    color: unset;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+    -webkit-tap-highlight-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+    font-family: "Overpass", sans-serif;
+    font-size: 1.4rem;
+    width: 100vw;
+    min-height: 70vh;
+    background-image: url("https://dropi.space/assets/circle-scatter-haikei.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#root {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.header__container {
+    width: 100%;
+    height: 60px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 60px;
+}
+
+.header__container h2 {
+    font-size: 4.4rem;
+    align-self: end;
+}
+
+.header__img {
+    width: 60px;
+    height: 60px;
+    font-size: 4rem;
+    color: #534e70;
+    background-color: #c6bdf8;
+    display: grid;
+    place-content: center;
+    border-radius: 20px;
+}
+
+.main__container {
+    width: 100%;
+}
+
+.main__count {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.main__search {
+    width: 300px;
+    height: 70px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 5px;
+    border: 1px solid #eeeff5;
+    border-radius: 30px;
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    place-content: center;
+}
+
+.search__icon {
+    width: 100%;
+    height: 60px;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f2f8;
+    border-radius: 30px;
+}
+
+.search__input {
+    width: 100%;
+    padding-left: 10px;
+    font-family: "Overpass", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+}
+
+.main__list {
+    margin-top: 20px;
+}
+
+.list__item {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 600px;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    gap: 5px;
+    place-items: center;
+    text-align: center;
+    border-radius: 30px;
+}
+
+.item__check {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: none;
+    border: 4px solid #1a1f48;
+}
+
+.item__check span {
+    display: none;
+    margin-top: 2px;
+    font-size: 2rem;
+}
+
+.completed .item__check span {
+    display: block;
+}
+
+.item__text {
+    justify-self: left;
+    font-size: 1.8rem;
+}
+
+.item__delete {
+    font-size: 2rem;
+    color: #c00000;
+}
+
+.main__add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    color: #ffffff;
+    background-color: #1a1f48;
+    border: none;
+    border-radius: 30px;
+    transform: rotate(0);
+    transition: .3s ease;
+}
+
+.main__add-button:hover {
+    transform: rotate(224deg);
+}
+
+/* status */
+
+.completed .item__check {
+    color: #ffffff;
+    background-color: #1a1f48;
+    border-radius: 50%;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.completed .item__text {
+    text-decoration: line-through;
+}
+
+.list__item.high {
+    background-color: #f7ced1;
+}
+
+.list__item.medium {
+    background-color: #ffe3c7;
+}
+
+.list__item.low {
+    background-color: #d6f1ff;
+}
+
+.list__item.completed {
+    background-color: #cabfff;
 }
