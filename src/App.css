@@ -238,6 +238,7 @@ body {
     height: 100%;
     display: grid;
     place-items: center;
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
 
