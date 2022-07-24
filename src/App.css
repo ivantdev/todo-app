@@ -132,7 +132,7 @@ body {
     margin-top: 20px;
 }
 
-.list__item {
+.list__item, .loading__container {
     margin: 20px auto;
     width: 100%;
     max-width: 600px;
@@ -143,6 +143,32 @@ body {
     place-items: center;
     text-align: center;
     border-radius: 30px;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.loading__container {
+    background: linear-gradient(90deg, #e4e4e4, #a8a8a8);
+    background-size: 500% 500%;
+    animation: loadingAnimation 2s ease-in-out infinite;
+}
+
+.loading__container .item__check {
+    border: 4px solid #ffffff; 
+}
+
+.loading__container .item__delete {
+    color: #ffffff;;
 }
 
 .item__check {
