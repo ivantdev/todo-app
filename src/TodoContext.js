@@ -55,22 +55,33 @@ function TodoProvider(props) {
     searchedTodos = todos;
   }
 
-  searchedTodos = sortTodos(searchedTodos);
-
+  
+  const addTodo = (text, priority) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      text: text,
+      completed: false,
+      priority: priority,
+    });
+    saveTodos(newTodos)
+  }
+  
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text);
-
+    
     const newTodos = [...todos];
-    newTodos[todoIndex].completed = true;
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
     saveTodos(newTodos);
   };
-
+  
   const deleteTodo = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
+  
+  searchedTodos = sortTodos(searchedTodos);
 
   return (
     <TodoContext.Provider value={{
@@ -81,6 +92,7 @@ function TodoProvider(props) {
       searchValue,
       setSearchValue,
       searchedTodos,
+      addTodo,
       completeTodo,
       deleteTodo,
       openModal,
