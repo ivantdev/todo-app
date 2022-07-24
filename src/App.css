@@ -25,7 +25,7 @@ body {
     font-family: "Overpass", sans-serif;
     font-size: 1.4rem;
     width: 100vw;
-    min-height: 70vh;
+    min-height: calc(100vh - 50px);
     background-image: url("https://dropi.space/assets/circle-scatter-haikei.svg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -108,6 +108,12 @@ body {
     border-radius: 20px;
     outline: none;
     border: none;
+}
+
+.main__info {
+    margin-top: 50px;
+    font-size: 3rem;
+    text-align: center;
 }
 
 .main__list {
