@@ -1,8 +1,8 @@
 import React from "react";
 
-function CreateTodoButton(props) {
+function CreateTodoButton({ setOpenModal, openModal }) {
     const onClickButton = () => {
-        alert("aqui va un modal");
+        setOpenModal(!openModal);
     };
     return (
         <button
