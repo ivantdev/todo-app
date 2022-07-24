@@ -11,6 +11,7 @@ import { TodoHeader } from "./TodoHeader";
 import { Modal } from './modal';
 import { TodoForm } from "./TodoForm";
 
+
 function AppUI() {
   const { error, loading, searchedTodos, completeTodo, deleteTodo, openModal, setOpenModal } = React.useContext(TodoContext);
   return (
