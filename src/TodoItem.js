@@ -5,15 +5,15 @@ function TodoItem(props) {
 
     return (
         <li className={ `list__item ${completed} ${props.priority}`}>
-            <span className="item__check" onClick={props.onComplete}>
+            <button className="item__check" onClick={props.onComplete}>
                 <span className="check-status">
                     <i className="fa-solid fa-check"></i>
                 </span>
-            </span>
+            </button>
             <p className="item__text">{props.text}</p>
-            <span className="item__delete" onClick={props.onDelete}>
+            <button className="item__delete" onClick={props.onDelete}>
                 <i className="fa-duotone fa-trash-can"></i>
-            </span>
+            </button>
         </li>
     );
 }

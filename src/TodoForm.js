@@ -22,7 +22,6 @@ function TodoForm() {
     const onChangeSelect = (event) => {
         setNewPriority(event.target.value);
         setCurrentIcon(icons[event.target.value]);
-        console.log('updating icon...');
     };
 
     const onCancel = () => {
