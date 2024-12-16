@@ -27,9 +27,9 @@ function AppUI() {
           {error && <p className="main__info">Oops, error...</p>}
           {loading && <TodoLoading /> }
           {!loading && !searchedTodos.length && <p className="main__info">Create a ToDo!</p>}
-          {searchedTodos.map((todo) => (
+          {searchedTodos.map((todo, i) => (
             <TodoItem
-              key={todo.text}
+              key={`${todo.text}+${i}`}
               text={todo.text}
               completed={todo.completed}
               priority={todo.priority}
